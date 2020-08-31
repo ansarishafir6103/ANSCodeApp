@@ -21,9 +21,11 @@ namespace ANSCodeUI
 
         #region Constructors
         #region frmBrand
-        public frmBrand()
+        frmBrandList _frmBrandList;
+        public frmBrand(frmBrandList frmBrandList)
         {
             InitializeComponent();
+            _frmBrandList = frmBrandList;
         }
         #endregion
         #endregion
@@ -43,7 +45,6 @@ namespace ANSCodeUI
                     _identity = sqlCommand.ExecuteNonQuery();
                     sqlConnection.Close();
                     MessageBox.Show("Record Save Succesfully", _msgHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    funClear();
                 }
             }
             catch (SqlException ex)
@@ -72,19 +73,30 @@ namespace ANSCodeUI
                 using (SqlConnection sqlConnection = new SqlConnection(DBConnection.MyConnection()))
                 {
                     sqlConnection.Open();
-                    SqlCommand sqlCommand = new SqlCommand("update tblBrand set brand='"+txtBrandName.Text+"' where id="+_identity+"", sqlConnection);
-                    sqlCommand.Parameters.AddWithValue("@id", txtBrandName.Text);
+                    SqlCommand sqlCommand = new SqlCommand("update tblBrand set brand=@brand where id like @id ", sqlConnection);
+                    sqlCommand.Parameters.AddWithValue("@id", lblId.Text);
                     sqlCommand.Parameters.AddWithValue("@brand", txtBrandName.Text);
                     _identity = sqlCommand.ExecuteNonQuery();
                     sqlConnection.Close();
-                    MessageBox.Show("Record Save Succesfully", _msgHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    funClear();
+                    MessageBox.Show("Record Updated Succesfully", _msgHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
-            catch (Exception ex)
+            catch (SqlException ex)
+            {
+                switch (ex.Number)
+                {
+                    case 2627:
+                        // Do something.
+                        MessageBox.Show("You cannot update duplicate record", _msgHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        break;
+                    default:
+                        throw;
+                }
+            }
+            catch (Exception e)
             {
 
-                MessageBox.Show(ex.Message, _msgHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, _msgHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
@@ -115,12 +127,15 @@ namespace ANSCodeUI
 
             try
             {
-                if (_identity==0)
+                if (string.IsNullOrEmpty(txtBrandName.Text))
                 {
-                    InsertBrand();
+                    MessageBox.Show("brand name is empty", _msgHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
-                BrandUpdate();
+
+                InsertBrand();
+                funClear();
+                _frmBrandList.LoadData();
             }
             catch (Exception ex)
             {
@@ -133,5 +148,37 @@ namespace ANSCodeUI
         #endregion
 
         #endregion
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void btnUpdate_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                var confirmResult = MessageBox.Show("Are you sure to update this item ??",
+                                     "Confirm Update!!",
+                                     MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    // If 'Yes', do something here.
+                    BrandUpdate();
+                    funClear();
+                    _frmBrandList.LoadData();
+                    this.Dispose();
+                }
+                else
+                {
+                    // If 'No', do something here.
+                }
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, _msgHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

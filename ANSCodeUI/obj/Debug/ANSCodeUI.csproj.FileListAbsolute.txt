@@ -20,3 +20,15 @@ E:\SmartCode\ANSCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.exe
 E:\SmartCode\ANSCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.pdb
 E:\SmartCode\ANSCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.frmBrandList.resources
 E:\SmartCode\ANSCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.frmBrand.resources
+E:\SmartCode\ANSCodeApp\ANSCodeUI\bin\Debug\ANSCodeUI.exe.config
+E:\SmartCode\ANSCodeApp\ANSCodeUI\bin\Debug\ANSCodeUI.exe
+E:\SmartCode\ANSCodeApp\ANSCodeUI\bin\Debug\ANSCodeUI.pdb
+E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.csprojAssemblyReference.cache
+E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.Form1.resources
+E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.frmBrand.resources
+E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.frmBrandList.resources
+E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.Properties.Resources.resources
+E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.csproj.GenerateResource.cache
+E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.csproj.CoreCompileInputs.cache
+E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.exe
+E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.pdb

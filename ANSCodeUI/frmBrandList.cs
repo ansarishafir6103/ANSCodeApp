@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace ANSCodeUI
@@ -21,13 +22,43 @@ namespace ANSCodeUI
         public frmBrandList()
         {
             InitializeComponent();
-            for (int i = 0; i < 9; i++)
-            {
-                grvData.Rows.Add(i, "1", "BRAND1" + i);
-            }
-
+            LoadData();
         }
         #endregion
+
+        #endregion
+
+        #region Methods
+
+        public void LoadData()
+        {
+            try
+            {
+                int i = 0;
+                grvData.Rows.Clear();
+                SqlConnection sqlConnection = new SqlConnection(DBConnection.MyConnection());
+                SqlCommand sqlCommand = new SqlCommand("select * from tblBrand order by brand",sqlConnection);
+                sqlConnection.Open();
+                SqlDataReader sqlDataReader = sqlCommand.ExecuteReader(); 
+                while(sqlDataReader.Read())
+                {
+                    i += 1;
+                    grvData.Rows.Add
+                        (i,
+                        sqlDataReader["id"].ToString(),
+                        sqlDataReader["brand"].ToString()
+                        );
+                }
+                
+                sqlConnection.Close();
+
+            }
+            catch (Exception ex)
+            {
+
+                MessageBox.Show(ex.Message, _msgHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
 
         #endregion
 
@@ -37,7 +68,7 @@ namespace ANSCodeUI
         {
             try
             {
-                frmBrand frmBrand = new frmBrand();
+                frmBrand frmBrand = new frmBrand(this);
                 frmBrand.ShowDialog();
             }
             catch (Exception ex)
@@ -47,8 +78,48 @@ namespace ANSCodeUI
             }
         }
         #endregion
+
         #endregion
 
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
 
+        private void grvData_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            string colName = grvData.Columns[e.ColumnIndex].Name;
+            if (colName=="Edit")
+            {
+                frmBrand Brand = new frmBrand(this);
+                Brand.lblId.Text= grvData[1, e.RowIndex].Value.ToString();
+                Brand.txtBrandName.Text = grvData[2,e.RowIndex].Value.ToString();
+                Brand.ShowDialog();
+            }
+            else if(colName == "Delete")
+            {
+                var confirmResult = MessageBox.Show("Are you sure to delete this item ??",
+                                      "Confirm Delete!!",
+                                      MessageBoxButtons.YesNo);
+                if (confirmResult == DialogResult.Yes)
+                {
+                    // If 'Yes', do something here.
+                    using (SqlConnection sqlConnection = new SqlConnection(DBConnection.MyConnection()))
+                    {
+                        sqlConnection.Open();
+                        SqlCommand sqlCommand = new SqlCommand("delete from tblBrand where id like '" + grvData[1,e.RowIndex].Value.ToString() + "' ", sqlConnection);
+                        sqlCommand.ExecuteNonQuery();
+                        sqlConnection.Close();
+                        MessageBox.Show("Record deleted Succesfully", _msgHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        LoadData();
+                    }
+
+                }
+                else
+                {
+                    // If 'No', do something here.
+                }
+            }
+        }
     }
 }
