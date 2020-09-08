@@ -30,8 +30,6 @@
         {
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panelLeft = new System.Windows.Forms.Panel();
-            this.userNameLable = new System.Windows.Forms.Label();
-            this.panelContainer = new System.Windows.Forms.Panel();
             this.btnSignOut = new System.Windows.Forms.Button();
             this.btnUserSettings = new System.Windows.Forms.Button();
             this.btnsystemSettings = new System.Windows.Forms.Button();
@@ -41,7 +39,9 @@
             this.btnManageProduct = new System.Windows.Forms.Button();
             this.btnManageSales = new System.Windows.Forms.Button();
             this.btnDashboard = new System.Windows.Forms.Button();
+            this.userNameLable = new System.Windows.Forms.Label();
             this.pbUserName = new System.Windows.Forms.PictureBox();
+            this.panelContainer = new System.Windows.Forms.Panel();
             this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbUserName)).BeginInit();
             this.SuspendLayout();
@@ -74,26 +74,6 @@
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Size = new System.Drawing.Size(250, 561);
             this.panelLeft.TabIndex = 1;
-            // 
-            // userNameLable
-            // 
-            this.userNameLable.AutoSize = true;
-            this.userNameLable.ForeColor = System.Drawing.Color.White;
-            this.userNameLable.Location = new System.Drawing.Point(73, 108);
-            this.userNameLable.Name = "userNameLable";
-            this.userNameLable.Size = new System.Drawing.Size(76, 17);
-            this.userNameLable.TabIndex = 2;
-            this.userNameLable.Text = "USERNAME";
-            this.userNameLable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // panelContainer
-            // 
-            this.panelContainer.BackColor = System.Drawing.SystemColors.Control;
-            this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelContainer.Location = new System.Drawing.Point(250, 37);
-            this.panelContainer.Name = "panelContainer";
-            this.panelContainer.Size = new System.Drawing.Size(948, 561);
-            this.panelContainer.TabIndex = 2;
             // 
             // btnSignOut
             // 
@@ -191,6 +171,7 @@
             this.btnManageCategory.Text = "Manage Category";
             this.btnManageCategory.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnManageCategory.UseVisualStyleBackColor = true;
+            this.btnManageCategory.Click += new System.EventHandler(this.btnManageCategory_Click);
             // 
             // btnManageProduct
             // 
@@ -240,6 +221,17 @@
             this.btnDashboard.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnDashboard.UseVisualStyleBackColor = true;
             // 
+            // userNameLable
+            // 
+            this.userNameLable.AutoSize = true;
+            this.userNameLable.ForeColor = System.Drawing.Color.White;
+            this.userNameLable.Location = new System.Drawing.Point(73, 108);
+            this.userNameLable.Name = "userNameLable";
+            this.userNameLable.Size = new System.Drawing.Size(76, 17);
+            this.userNameLable.TabIndex = 2;
+            this.userNameLable.Text = "USERNAME";
+            this.userNameLable.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
             // pbUserName
             // 
             this.pbUserName.BackColor = System.Drawing.Color.White;
@@ -251,6 +243,15 @@
             this.pbUserName.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbUserName.TabIndex = 0;
             this.pbUserName.TabStop = false;
+            // 
+            // panelContainer
+            // 
+            this.panelContainer.BackColor = System.Drawing.SystemColors.Control;
+            this.panelContainer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelContainer.Location = new System.Drawing.Point(250, 37);
+            this.panelContainer.Name = "panelContainer";
+            this.panelContainer.Size = new System.Drawing.Size(948, 561);
+            this.panelContainer.TabIndex = 2;
             // 
             // Form1
             // 

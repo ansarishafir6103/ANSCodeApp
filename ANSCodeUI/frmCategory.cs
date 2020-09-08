@@ -2,47 +2,36 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.Data.SqlClient;
-using System.Xml;
 
 namespace ANSCodeUI
 {
-    public partial class frmBrand : Form
+    public partial class frmCategory : Form
     {
-        #region Variables
-        private int _identity = 0;
-        private const string _msgHeader = "Brand Entry Form";
-        #endregion
-
-        #region Constructors
-        #region frmBrand
-        frmBrandList _frmBrandList;
-        public frmBrand(frmBrandList frmBrandList)
+        private string _msgHeader = "Form Category";
+        frmCategoryList  _categoryList;
+        public frmCategory(frmCategoryList categoryList)
         {
             InitializeComponent();
-            _frmBrandList = frmBrandList;
+            _categoryList = categoryList;
         }
-        #endregion
-        #endregion
 
-        #region Methods
-        
         #region Insert
-        private void InsertBrand()
+        private void InsertCategory()
         {
             try
             {
                 using (SqlConnection sqlConnection = new SqlConnection(DBConnection.MyConnection()))
                 {
                     sqlConnection.Open();
-                    SqlCommand sqlCommand = new SqlCommand("INSERT INTO tblBrand (brand) values (@brand)", sqlConnection);
-                    sqlCommand.Parameters.AddWithValue("@brand", txtBrandName.Text);
-                    _identity = sqlCommand.ExecuteNonQuery();
+                    SqlCommand sqlCommand = new SqlCommand("INSERT INTO tblCategory (category) values (@category)", sqlConnection);
+                    sqlCommand.Parameters.AddWithValue("@category",txtCategoryName.Text);
+                    sqlCommand.ExecuteNonQuery();
                     sqlConnection.Close();
                     MessageBox.Show("Record Save Succesfully", _msgHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -59,24 +48,24 @@ namespace ANSCodeUI
                         throw;
                 }
             }
-            catch(Exception e)
+            catch (Exception e)
             {
-                MessageBox.Show(e.Message,_msgHeader,MessageBoxButtons.OK,MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, _msgHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
         #region Update
-        private void BrandUpdate()
+        private void CategoryUpdate()
         {
             try
             {
                 using (SqlConnection sqlConnection = new SqlConnection(DBConnection.MyConnection()))
                 {
                     sqlConnection.Open();
-                    SqlCommand sqlCommand = new SqlCommand("update tblBrand set brand=@brand where id like @id ", sqlConnection);
+                    SqlCommand sqlCommand = new SqlCommand("update tblCategory set category=@category where id like @id ", sqlConnection);
                     sqlCommand.Parameters.AddWithValue("@id", lblId.Text);
-                    sqlCommand.Parameters.AddWithValue("@brand", txtBrandName.Text);
-                    _identity = sqlCommand.ExecuteNonQuery();
+                    sqlCommand.Parameters.AddWithValue("@category", txtCategoryName.Text);
+                    sqlCommand.ExecuteNonQuery();
                     sqlConnection.Close();
                     MessageBox.Show("Record Updated Successfully", _msgHeader, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
@@ -100,58 +89,42 @@ namespace ANSCodeUI
             }
         }
         #endregion
-
         #region funClear
         private void funClear()
         {
             try
             {
-                _identity = 0;
-                txtBrandName.Text = string.Empty;
+                txtCategoryName.Text = "";
             }
             catch (Exception ex)
             {
-
                 MessageBox.Show(ex.Message, _msgHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         #endregion
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Dispose();
+        }
 
-        #endregion
-
-        #region Events
-
-        #region btnSave_Click
         private void btnSave_Click(object sender, EventArgs e)
         {
-
             try
             {
-                if (string.IsNullOrEmpty(txtBrandName.Text))
+                if (string.IsNullOrEmpty(txtCategoryName.Text))
                 {
-                    MessageBox.Show("brand name is empty", _msgHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    MessageBox.Show("category name is empty", _msgHeader, MessageBoxButtons.OK, MessageBoxIcon.Warning);
                     return;
                 }
 
-                InsertBrand();
+                InsertCategory();
                 funClear();
-                _frmBrandList.LoadData();
+                _categoryList.LoadData();
             }
             catch (Exception ex)
             {
-               
                 MessageBox.Show(ex.Message, _msgHeader, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-        }
-
-        #endregion
-
-        #endregion
-
-        private void btnExit_Click(object sender, EventArgs e)
-        {
-            this.Close();
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
@@ -164,9 +137,9 @@ namespace ANSCodeUI
                 if (confirmResult == DialogResult.Yes)
                 {
                     // If 'Yes', do something here.
-                    BrandUpdate();
+                    CategoryUpdate();
                     funClear();
-                    _frmBrandList.LoadData();
+                    _categoryList.LoadData();
                     this.Dispose();
                 }
                 else

@@ -25,5 +25,14 @@ namespace ANSCodeUI
             brandList.BringToFront();
             brandList.Show();
         }
+
+        private void btnManageCategory_Click(object sender, EventArgs e)
+        {
+            frmCategoryList categoryList = new frmCategoryList();
+            categoryList.TopLevel = false;
+            panelContainer.Controls.Add(categoryList);
+            categoryList.BringToFront();
+            categoryList.Show();
+        }
     }
 }
