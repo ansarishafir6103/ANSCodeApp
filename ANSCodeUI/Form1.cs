@@ -34,5 +34,19 @@ namespace ANSCodeUI
             categoryList.BringToFront();
             categoryList.Show();
         }
+
+        private void btnManageProduct_Click(object sender, EventArgs e)
+        {
+            frmProductList productList = new frmProductList();
+            productList.TopLevel = false;
+            panelContainer.Controls.Add(productList);
+            productList.BringToFront();
+            productList.Show();
+        }
+
+        private void btnSignOut_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

@@ -90,6 +90,7 @@
             this.btnSignOut.Text = "Sing Out";
             this.btnSignOut.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSignOut.UseVisualStyleBackColor = true;
+            this.btnSignOut.Click += new System.EventHandler(this.btnSignOut_Click);
             // 
             // btnUserSettings
             // 
@@ -188,6 +189,7 @@
             this.btnManageProduct.Text = "Manage Product";
             this.btnManageProduct.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnManageProduct.UseVisualStyleBackColor = true;
+            this.btnManageProduct.Click += new System.EventHandler(this.btnManageProduct_Click);
             // 
             // btnManageSales
             // 
