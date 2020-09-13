@@ -29,9 +29,9 @@
         private void InitializeComponent()
         {
             this.panelHeader = new System.Windows.Forms.Panel();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.btnExit = new System.Windows.Forms.Button();
             this.lblProductModule = new System.Windows.Forms.Label();
-            this.panel1 = new System.Windows.Forms.Panel();
             this.txtProductCode = new System.Windows.Forms.TextBox();
             this.lblBrandName = new System.Windows.Forms.Label();
             this.txtDescription = new System.Windows.Forms.TextBox();
@@ -63,6 +63,15 @@
             this.panelHeader.Size = new System.Drawing.Size(713, 37);
             this.panelHeader.TabIndex = 2;
             // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.btnExit);
+            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel1.Location = new System.Drawing.Point(632, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(79, 35);
+            this.panel1.TabIndex = 7;
+            // 
             // btnExit
             // 
             this.btnExit.Cursor = System.Windows.Forms.Cursors.Hand;
@@ -90,15 +99,6 @@
             this.lblProductModule.Size = new System.Drawing.Size(121, 21);
             this.lblProductModule.TabIndex = 0;
             this.lblProductModule.Text = "Product Module";
-            // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.btnExit);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel1.Location = new System.Drawing.Point(632, 0);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(79, 35);
-            this.panel1.TabIndex = 7;
             // 
             // txtProductCode
             // 
@@ -223,6 +223,7 @@
             this.btnUpdate.Text = "Update";
             this.btnUpdate.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnUpdate.UseVisualStyleBackColor = true;
+            this.btnUpdate.Click += new System.EventHandler(this.btnUpdate_Click);
             // 
             // btnReset
             // 
@@ -255,6 +256,7 @@
             this.btnSave.Text = "Save";
             this.btnSave.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnSave.UseVisualStyleBackColor = true;
+            this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
             // frmProduct
             // 
@@ -302,15 +304,15 @@
         public System.Windows.Forms.TextBox txtDescription;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox cmbBrand;
-        private System.Windows.Forms.ComboBox cmbCategory;
         private System.Windows.Forms.Label label3;
         public System.Windows.Forms.TextBox txtPrice;
         private System.Windows.Forms.Label label4;
         public System.Windows.Forms.TextBox txtInitialQty;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Button btnReset;
         public System.Windows.Forms.Button btnSave;
         public System.Windows.Forms.Button btnUpdate;
+        public System.Windows.Forms.ComboBox cmbBrand;
+        public System.Windows.Forms.ComboBox cmbCategory;
+        public System.Windows.Forms.Button btnReset;
     }
 }

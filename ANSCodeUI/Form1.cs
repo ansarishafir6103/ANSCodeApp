@@ -41,6 +41,7 @@ namespace ANSCodeUI
             productList.TopLevel = false;
             panelContainer.Controls.Add(productList);
             productList.BringToFront();
+            productList.LoadRecords();
             productList.Show();
         }
 
