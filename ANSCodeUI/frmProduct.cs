@@ -58,6 +58,7 @@ namespace ANSCodeUI
         private void Clear()
         {
             txtProductCode.Text = "";
+            txtBarcode.Text = "";
             txtDescription.Text = "";
             cmbBrand.SelectedIndex = -1;
             cmbCategory.SelectedIndex = -1;
@@ -85,9 +86,10 @@ namespace ANSCodeUI
                     SqlDataReader sqlDataReader;
 
                     #region Select BrandId
-                    string BQuery = @"select id from tblBrand where brand like '" + cmbBrand.Text + "'";
-                    sqlConnection.Open();
+                    string BQuery = @"select id from tblBrand where brand like @brand";
+                    sqlConnection.Open(); 
                     sqlCommand = new SqlCommand(BQuery, sqlConnection);
+                    sqlCommand.Parameters.AddWithValue("@brand", SqlDbType.VarChar).Value = cmbBrand.Text;
                     sqlDataReader = sqlCommand.ExecuteReader();
                     sqlDataReader.Read();
                     if (sqlDataReader.HasRows) { brandid = sqlDataReader[0].ToString(); }
@@ -96,9 +98,10 @@ namespace ANSCodeUI
                     #endregion
 
                     #region Select CategoryId
-                    string CQuery = @"select id from tblcategory where category like '" + cmbCategory.Text + "'";
+                    string CQuery = @"select id from tblcategory where category like @category";
                     sqlConnection.Open();
                     sqlCommand = new SqlCommand(CQuery, sqlConnection);
+                    sqlCommand.Parameters.AddWithValue("@category", SqlDbType.VarChar).Value = cmbCategory.Text;
                     sqlDataReader = sqlCommand.ExecuteReader();
                     sqlDataReader.Read();
                     if (sqlDataReader.HasRows) { categoryid = sqlDataReader[0].ToString(); }
@@ -107,10 +110,11 @@ namespace ANSCodeUI
                     #endregion
 
                     #region Insert Product
-                    string PQuery = @"insert into tblProduct (pcode,pdesc,brandid,categoryid,price) values (@pcode,@pdesc,@brandid,@categoryid,@price)";
+                    string PQuery = @"insert into tblProduct (pcode,barcode,pdesc,brandid,categoryid,price) values (@pcode,@barcode,@pdesc,@brandid,@categoryid,@price)";
                     sqlConnection.Open();
                     sqlCommand = new SqlCommand(PQuery, sqlConnection);
                     sqlCommand.Parameters.AddWithValue("@pcode", txtProductCode.Text);
+                    sqlCommand.Parameters.AddWithValue("@barcode", txtBarcode.Text);
                     sqlCommand.Parameters.AddWithValue("@pdesc", txtDescription.Text);
                     sqlCommand.Parameters.AddWithValue("@brandid", brandid);
                     sqlCommand.Parameters.AddWithValue("@categoryid", categoryid);
@@ -119,7 +123,7 @@ namespace ANSCodeUI
                     sqlConnection.Close();
                     #endregion
 
-                    MessageBox.Show("Product has been successfully saved.", _msg, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Product has been successfully saved.", _msg, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Clear();
                     _frmProductList.LoadRecords();
                   }
@@ -143,9 +147,10 @@ namespace ANSCodeUI
                     SqlDataReader sqlDataReader;
 
                     #region Select BrandId
-                    string BQuery = @"select id from tblBrand where brand like '" + cmbBrand.Text + "'";
+                    string BQuery = @"select id from tblBrand where brand like @brand";
                     sqlConnection.Open();
                     sqlCommand = new SqlCommand(BQuery, sqlConnection);
+                    sqlCommand.Parameters.AddWithValue("@brand", SqlDbType.VarChar).Value = cmbBrand.Text;
                     sqlDataReader = sqlCommand.ExecuteReader();
                     sqlDataReader.Read();
                     if (sqlDataReader.HasRows) { brandid = sqlDataReader[0].ToString(); }
@@ -154,9 +159,10 @@ namespace ANSCodeUI
                     #endregion
 
                     #region Select CategoryId
-                    string CQuery = @"select id from tblcategory where category like '" + cmbCategory.Text + "'";
+                    string CQuery = @"select id from tblcategory where category like @category";
                     sqlConnection.Open();
                     sqlCommand = new SqlCommand(CQuery, sqlConnection);
+                    sqlCommand.Parameters.AddWithValue("@category", SqlDbType.VarChar).Value = cmbCategory.Text;
                     sqlDataReader = sqlCommand.ExecuteReader();
                     sqlDataReader.Read();
                     if (sqlDataReader.HasRows) { categoryid = sqlDataReader[0].ToString(); }
@@ -165,10 +171,11 @@ namespace ANSCodeUI
                     #endregion
 
                     #region Insert Product
-                    string PQuery = @"update tblProduct set pcode=@pcode,pdesc=@pdesc,brandid=@brandid,categoryid=@categoryid,price=@price where pcode like @pcode";
+                    string PQuery = @"update tblProduct set pcode=@pcode,barcode=@barcode,pdesc=@pdesc,brandid=@brandid,categoryid=@categoryid,price=@price where pcode like @pcode";
                     sqlConnection.Open();
                     sqlCommand = new SqlCommand(PQuery, sqlConnection);
                     sqlCommand.Parameters.AddWithValue("@pcode", txtProductCode.Text);
+                    sqlCommand.Parameters.AddWithValue("@barcode", txtBarcode.Text);
                     sqlCommand.Parameters.AddWithValue("@pdesc", txtDescription.Text);
                     sqlCommand.Parameters.AddWithValue("@brandid", brandid);
                     sqlCommand.Parameters.AddWithValue("@categoryid", categoryid);
@@ -177,7 +184,7 @@ namespace ANSCodeUI
                     sqlConnection.Close();
                     #endregion
 
-                    MessageBox.Show("Product has been successfully updated.", _msg, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Product has been successfully updated.", _msg, MessageBoxButtons.OK, MessageBoxIcon.Information);
                     Clear();
                     _frmProductList.LoadRecords();
                     this.Dispose();
@@ -186,6 +193,29 @@ namespace ANSCodeUI
             catch (Exception ex)
             {
 
+                MessageBox.Show(ex.ToString(), _msg, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtPrice_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            try
+            {
+                if (e.KeyChar == 46)
+                {
+                    //accept . character
+                }
+                else if (e.KeyChar==8)
+                {
+                    //accept backspace
+                }
+                else if ((e.KeyChar < 48) || (e.KeyChar > 57))
+                {
+                    e.Handled = true;
+                }
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.ToString(), _msg, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }

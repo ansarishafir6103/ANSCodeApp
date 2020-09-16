@@ -47,6 +47,8 @@
             this.btnUpdate = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.btnSave = new System.Windows.Forms.Button();
+            this.txtBarcode = new System.Windows.Forms.TextBox();
+            this.lblBarcode = new System.Windows.Forms.Label();
             this.panelHeader.SuspendLayout();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
@@ -121,7 +123,7 @@
             // txtDescription
             // 
             this.txtDescription.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(91)))), ((int)(((byte)(135)))));
-            this.txtDescription.Location = new System.Drawing.Point(193, 96);
+            this.txtDescription.Location = new System.Drawing.Point(193, 128);
             this.txtDescription.Name = "txtDescription";
             this.txtDescription.Size = new System.Drawing.Size(471, 25);
             this.txtDescription.TabIndex = 10;
@@ -130,7 +132,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(91)))), ((int)(((byte)(135)))));
-            this.label1.Location = new System.Drawing.Point(106, 100);
+            this.label1.Location = new System.Drawing.Point(106, 132);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(74, 17);
             this.label1.TabIndex = 11;
@@ -140,7 +142,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(91)))), ((int)(((byte)(135)))));
-            this.label2.Location = new System.Drawing.Point(106, 131);
+            this.label2.Location = new System.Drawing.Point(106, 163);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 17);
             this.label2.TabIndex = 13;
@@ -149,7 +151,7 @@
             // cmbBrand
             // 
             this.cmbBrand.FormattingEnabled = true;
-            this.cmbBrand.Location = new System.Drawing.Point(193, 127);
+            this.cmbBrand.Location = new System.Drawing.Point(193, 159);
             this.cmbBrand.Name = "cmbBrand";
             this.cmbBrand.Size = new System.Drawing.Size(471, 25);
             this.cmbBrand.TabIndex = 14;
@@ -157,7 +159,7 @@
             // cmbCategory
             // 
             this.cmbCategory.FormattingEnabled = true;
-            this.cmbCategory.Location = new System.Drawing.Point(193, 158);
+            this.cmbCategory.Location = new System.Drawing.Point(193, 190);
             this.cmbCategory.Name = "cmbCategory";
             this.cmbCategory.Size = new System.Drawing.Size(471, 25);
             this.cmbCategory.TabIndex = 16;
@@ -166,7 +168,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(91)))), ((int)(((byte)(135)))));
-            this.label3.Location = new System.Drawing.Point(106, 162);
+            this.label3.Location = new System.Drawing.Point(106, 194);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(61, 17);
             this.label3.TabIndex = 15;
@@ -175,16 +177,17 @@
             // txtPrice
             // 
             this.txtPrice.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(91)))), ((int)(((byte)(135)))));
-            this.txtPrice.Location = new System.Drawing.Point(193, 190);
+            this.txtPrice.Location = new System.Drawing.Point(193, 222);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(471, 25);
             this.txtPrice.TabIndex = 17;
+            this.txtPrice.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPrice_KeyPress);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(91)))), ((int)(((byte)(135)))));
-            this.label4.Location = new System.Drawing.Point(106, 194);
+            this.label4.Location = new System.Drawing.Point(106, 226);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(36, 17);
             this.label4.TabIndex = 18;
@@ -193,7 +196,7 @@
             // txtInitialQty
             // 
             this.txtInitialQty.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(91)))), ((int)(((byte)(135)))));
-            this.txtInitialQty.Location = new System.Drawing.Point(193, 222);
+            this.txtInitialQty.Location = new System.Drawing.Point(193, 254);
             this.txtInitialQty.Name = "txtInitialQty";
             this.txtInitialQty.Size = new System.Drawing.Size(471, 25);
             this.txtInitialQty.TabIndex = 19;
@@ -202,7 +205,7 @@
             // 
             this.label5.AutoSize = true;
             this.label5.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(91)))), ((int)(((byte)(135)))));
-            this.label5.Location = new System.Drawing.Point(106, 226);
+            this.label5.Location = new System.Drawing.Point(106, 258);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(62, 17);
             this.label5.TabIndex = 20;
@@ -216,7 +219,7 @@
             this.btnUpdate.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(91)))), ((int)(((byte)(135)))));
             this.btnUpdate.Image = global::ANSCodeUI.Properties.Resources.Save;
             this.btnUpdate.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUpdate.Location = new System.Drawing.Point(274, 253);
+            this.btnUpdate.Location = new System.Drawing.Point(274, 285);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(85, 30);
             this.btnUpdate.TabIndex = 23;
@@ -233,7 +236,7 @@
             this.btnReset.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(91)))), ((int)(((byte)(135)))));
             this.btnReset.Image = global::ANSCodeUI.Properties.Resources.Reset;
             this.btnReset.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReset.Location = new System.Drawing.Point(367, 253);
+            this.btnReset.Location = new System.Drawing.Point(367, 285);
             this.btnReset.Name = "btnReset";
             this.btnReset.Size = new System.Drawing.Size(75, 30);
             this.btnReset.TabIndex = 22;
@@ -249,7 +252,7 @@
             this.btnSave.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(91)))), ((int)(((byte)(135)))));
             this.btnSave.Image = global::ANSCodeUI.Properties.Resources.Save;
             this.btnSave.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSave.Location = new System.Drawing.Point(191, 253);
+            this.btnSave.Location = new System.Drawing.Point(191, 285);
             this.btnSave.Name = "btnSave";
             this.btnSave.Size = new System.Drawing.Size(75, 30);
             this.btnSave.TabIndex = 21;
@@ -258,12 +261,32 @@
             this.btnSave.UseVisualStyleBackColor = true;
             this.btnSave.Click += new System.EventHandler(this.btnSave_Click);
             // 
+            // txtBarcode
+            // 
+            this.txtBarcode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(91)))), ((int)(((byte)(135)))));
+            this.txtBarcode.Location = new System.Drawing.Point(193, 96);
+            this.txtBarcode.Name = "txtBarcode";
+            this.txtBarcode.Size = new System.Drawing.Size(471, 25);
+            this.txtBarcode.TabIndex = 24;
+            // 
+            // lblBarcode
+            // 
+            this.lblBarcode.AutoSize = true;
+            this.lblBarcode.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(91)))), ((int)(((byte)(135)))));
+            this.lblBarcode.Location = new System.Drawing.Point(106, 100);
+            this.lblBarcode.Name = "lblBarcode";
+            this.lblBarcode.Size = new System.Drawing.Size(56, 17);
+            this.lblBarcode.TabIndex = 25;
+            this.lblBarcode.Text = "Barcode";
+            // 
             // frmProduct
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(713, 380);
             this.ControlBox = false;
+            this.Controls.Add(this.txtBarcode);
+            this.Controls.Add(this.lblBarcode);
             this.Controls.Add(this.btnUpdate);
             this.Controls.Add(this.btnReset);
             this.Controls.Add(this.btnSave);
@@ -314,5 +337,7 @@
         public System.Windows.Forms.ComboBox cmbBrand;
         public System.Windows.Forms.ComboBox cmbCategory;
         public System.Windows.Forms.Button btnReset;
+        public System.Windows.Forms.TextBox txtBarcode;
+        private System.Windows.Forms.Label lblBarcode;
     }
 }
