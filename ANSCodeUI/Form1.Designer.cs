@@ -42,6 +42,7 @@
             this.userNameLable = new System.Windows.Forms.Label();
             this.pbUserName = new System.Windows.Forms.PictureBox();
             this.panelContainer = new System.Windows.Forms.Panel();
+            this.btnStockIn = new System.Windows.Forms.Button();
             this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbUserName)).BeginInit();
             this.SuspendLayout();
@@ -58,6 +59,7 @@
             // panelLeft
             // 
             this.panelLeft.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(62)))), ((int)(((byte)(91)))), ((int)(((byte)(135)))));
+            this.panelLeft.Controls.Add(this.btnStockIn);
             this.panelLeft.Controls.Add(this.btnSignOut);
             this.panelLeft.Controls.Add(this.btnUserSettings);
             this.panelLeft.Controls.Add(this.btnsystemSettings);
@@ -83,7 +85,7 @@
             this.btnSignOut.ForeColor = System.Drawing.Color.White;
             this.btnSignOut.Image = global::ANSCodeUI.Properties.Resources.SignOut;
             this.btnSignOut.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSignOut.Location = new System.Drawing.Point(13, 448);
+            this.btnSignOut.Location = new System.Drawing.Point(13, 487);
             this.btnSignOut.Name = "btnSignOut";
             this.btnSignOut.Size = new System.Drawing.Size(222, 30);
             this.btnSignOut.TabIndex = 11;
@@ -100,7 +102,7 @@
             this.btnUserSettings.ForeColor = System.Drawing.Color.White;
             this.btnUserSettings.Image = global::ANSCodeUI.Properties.Resources.UserSettings;
             this.btnUserSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUserSettings.Location = new System.Drawing.Point(13, 412);
+            this.btnUserSettings.Location = new System.Drawing.Point(13, 451);
             this.btnUserSettings.Name = "btnUserSettings";
             this.btnUserSettings.Size = new System.Drawing.Size(222, 30);
             this.btnUserSettings.TabIndex = 10;
@@ -116,7 +118,7 @@
             this.btnsystemSettings.ForeColor = System.Drawing.Color.White;
             this.btnsystemSettings.Image = global::ANSCodeUI.Properties.Resources.SystemSettings;
             this.btnsystemSettings.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnsystemSettings.Location = new System.Drawing.Point(13, 375);
+            this.btnsystemSettings.Location = new System.Drawing.Point(13, 414);
             this.btnsystemSettings.Name = "btnsystemSettings";
             this.btnsystemSettings.Size = new System.Drawing.Size(222, 30);
             this.btnsystemSettings.TabIndex = 9;
@@ -132,7 +134,7 @@
             this.btnRecords.ForeColor = System.Drawing.Color.White;
             this.btnRecords.Image = global::ANSCodeUI.Properties.Resources.Records;
             this.btnRecords.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRecords.Location = new System.Drawing.Point(13, 336);
+            this.btnRecords.Location = new System.Drawing.Point(13, 375);
             this.btnRecords.Name = "btnRecords";
             this.btnRecords.Size = new System.Drawing.Size(222, 30);
             this.btnRecords.TabIndex = 8;
@@ -148,7 +150,7 @@
             this.btnManageBrand.ForeColor = System.Drawing.Color.White;
             this.btnManageBrand.Image = global::ANSCodeUI.Properties.Resources.Brand;
             this.btnManageBrand.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnManageBrand.Location = new System.Drawing.Point(13, 299);
+            this.btnManageBrand.Location = new System.Drawing.Point(13, 338);
             this.btnManageBrand.Name = "btnManageBrand";
             this.btnManageBrand.Size = new System.Drawing.Size(222, 30);
             this.btnManageBrand.TabIndex = 7;
@@ -165,7 +167,7 @@
             this.btnManageCategory.ForeColor = System.Drawing.Color.White;
             this.btnManageCategory.Image = global::ANSCodeUI.Properties.Resources.Category;
             this.btnManageCategory.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnManageCategory.Location = new System.Drawing.Point(13, 261);
+            this.btnManageCategory.Location = new System.Drawing.Point(13, 300);
             this.btnManageCategory.Name = "btnManageCategory";
             this.btnManageCategory.Size = new System.Drawing.Size(222, 30);
             this.btnManageCategory.TabIndex = 6;
@@ -255,6 +257,23 @@
             this.panelContainer.Size = new System.Drawing.Size(948, 561);
             this.panelContainer.TabIndex = 2;
             // 
+            // btnStockIn
+            // 
+            this.btnStockIn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStockIn.FlatAppearance.BorderSize = 0;
+            this.btnStockIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStockIn.ForeColor = System.Drawing.Color.White;
+            this.btnStockIn.Image = global::ANSCodeUI.Properties.Resources.Product;
+            this.btnStockIn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStockIn.Location = new System.Drawing.Point(13, 265);
+            this.btnStockIn.Name = "btnStockIn";
+            this.btnStockIn.Size = new System.Drawing.Size(222, 30);
+            this.btnStockIn.TabIndex = 12;
+            this.btnStockIn.Text = "Stock In";
+            this.btnStockIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnStockIn.UseVisualStyleBackColor = true;
+            this.btnStockIn.Click += new System.EventHandler(this.btnStockIn_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -293,6 +312,7 @@
         private System.Windows.Forms.Button btnsystemSettings;
         private System.Windows.Forms.Button btnSignOut;
         private System.Windows.Forms.Panel panelContainer;
+        private System.Windows.Forms.Button btnStockIn;
     }
 }
 

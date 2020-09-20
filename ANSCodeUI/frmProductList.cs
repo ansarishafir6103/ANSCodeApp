@@ -38,7 +38,6 @@ namespace ANSCodeUI
             using (SqlConnection sqlConnection=new SqlConnection(DBConnection.MyConnection()))
             {
                 int i = 0;
-                sqlConnection.Open();
                 string query = @"select p.pcode,p.barcode,p.pdesc,b.brand,c.category,p.price,p.qty from tblProduct as p
                                  inner join  tblBrand as b on b.id=p.brandid
                                     inner join tblCategory as c on c.id=p.categoryid where p.pdesc like '%" + txtSearch.Text +"%'";

@@ -49,5 +49,12 @@ namespace ANSCodeUI
         {
             this.Close();
         }
+
+        private void btnStockIn_Click(object sender, EventArgs e)
+        {
+            frmStockIn stockIn = new frmStockIn();
+            stockIn.LoadProduct();
+            stockIn.Show();
+        }
     }
 }
