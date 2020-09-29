@@ -45,12 +45,12 @@ namespace ANSCodeUI
 
         public void LoadStockIn()
         {
-            grvData.Rows.Clear();
+            grvDetail.Rows.Clear();
             using (SqlConnection sqlConnection = new SqlConnection(DBConnection.MyConnection()))
             {
                 sqlConnection.Open();
                 int i = 0;
-                string query = "select * from View_StockIn";
+                string query = "select * from View_StockIn where 1=1 or refno like '" + txtSearch.Text +"'";
                 SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
                 while (sqlDataReader.Read())
@@ -79,8 +79,11 @@ namespace ANSCodeUI
                 string colName = grvData.Columns[e.ColumnIndex].Name;
                 if (colName == "colSelect")
                 {
-                    var confirmResult = MessageBox.Show("Are you sure to delete this item ??",
-                                    "Confirm Delete!!",
+
+                    if (string.IsNullOrEmpty(txtRefNo.Text)) { MessageBox.Show("please enter reference no",_msg,MessageBoxButtons.OK,MessageBoxIcon.Warning); txtRefNo.Focus(); return; }
+                    if (string.IsNullOrEmpty(txtStockInBy.Text)) { MessageBox.Show("please enter stock In by",_msg,MessageBoxButtons.OK,MessageBoxIcon.Warning); txtStockInBy.Focus(); return; }
+                    var confirmResult = MessageBox.Show("Are you sure to add this item ??",
+                                    "Confirm add!!",
                                     MessageBoxButtons.YesNo);
                     if (confirmResult == DialogResult.Yes)
                     {
@@ -105,6 +108,42 @@ namespace ANSCodeUI
             catch (Exception ex)
             {
 
+                MessageBox.Show(ex.ToString(), _msg, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnExit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void grvDetail_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                string colName = grvDetail.Columns[e.ColumnIndex].Name;
+                if (colName == "colDelete")
+                {
+                    var confirmResult = MessageBox.Show("Are you sure to delete this item ??",
+                                    "Confirm delete!!",
+                                    MessageBoxButtons.YesNo);
+                    if (confirmResult == DialogResult.Yes)
+                    {
+                        using (SqlConnection sqlConnection=new SqlConnection(DBConnection.MyConnection()))
+                        {
+                            string query = @"delete from tblStockIn where id = '"+ grvDetail.Rows[e.RowIndex].Cells[1].Value.ToString() +"'";
+                            sqlConnection.Open();
+                            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
+                            sqlCommand.ExecuteNonQuery();
+                            sqlConnection.Close();
+                            MessageBox.Show("Item has been successfully removed !", _msg, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            LoadStockIn();
+                        }
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
                 MessageBox.Show(ex.ToString(), _msg, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
