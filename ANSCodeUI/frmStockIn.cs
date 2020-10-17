@@ -21,21 +21,29 @@ namespace ANSCodeUI
 
         public void LoadProduct()
         {
+            grvDetail.Rows.Clear();
             using (SqlConnection sqlConnection = new SqlConnection(DBConnection.MyConnection()))
             {
-                sqlConnection.Open();
                 int i = 0;
-                string query = "select pcode,pdesc,price from tblProduct where pdesc like '%" + txtSearch.Text + "%' order by pdesc";
+                sqlConnection.Open();
+                string query = @"select p.pcode,p.barcode,p.pdesc,b.brand,c.category,p.price,p.qty from tblProduct as p
+                                 inner join  tblBrand as b on b.id=p.brandid
+                                    inner join tblCategory as c on c.id=p.categoryid";
                 SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
                 while (sqlDataReader.Read())
                 {
                     i++;
-                    grvData.Rows.Add
-                        (i,
+                    grvDetail.Rows.Add
+                        (
+                        i,
                         sqlDataReader[0].ToString(),
                         sqlDataReader[1].ToString(),
-                        sqlDataReader[2].ToString()
+                        sqlDataReader[2].ToString(),
+                        sqlDataReader[3].ToString(),
+                        sqlDataReader[4].ToString(),
+                        sqlDataReader[5].ToString(),
+                        sqlDataReader[6].ToString()
                         );
                 }
                 sqlDataReader.Close();
@@ -50,7 +58,7 @@ namespace ANSCodeUI
             {
                 sqlConnection.Open();
                 int i = 0;
-                string query = "select * from View_StockIn where 1=1 or refno like '" + txtSearch.Text +"'";
+                string query = "select * from View_StockIn where refno like '" + txtRefNo.Text + "' and status like 'pending'";
                 SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
                 SqlDataReader sqlDataReader = sqlCommand.ExecuteReader();
                 while (sqlDataReader.Read())
@@ -76,33 +84,7 @@ namespace ANSCodeUI
         {
             try
             {
-                string colName = grvData.Columns[e.ColumnIndex].Name;
-                if (colName == "colSelect")
-                {
 
-                    if (string.IsNullOrEmpty(txtRefNo.Text)) { MessageBox.Show("please enter reference no",_msg,MessageBoxButtons.OK,MessageBoxIcon.Warning); txtRefNo.Focus(); return; }
-                    if (string.IsNullOrEmpty(txtStockInBy.Text)) { MessageBox.Show("please enter stock In by",_msg,MessageBoxButtons.OK,MessageBoxIcon.Warning); txtStockInBy.Focus(); return; }
-                    var confirmResult = MessageBox.Show("Are you sure to add this item ??",
-                                    "Confirm add!!",
-                                    MessageBoxButtons.YesNo);
-                    if (confirmResult == DialogResult.Yes)
-                    {
-                        using (SqlConnection sqlConnection = new SqlConnection(DBConnection.MyConnection()))
-                        {
-                            sqlConnection.Open();
-                            string query = "insert into tblStockIn (refno,pcode,sdate,stockinby) values (@refno,@pcode,@sdate,@stockinby)";//select * from tblStockIn where pcode like '" + grvData.Rows[e.RowIndex].Cells[1].Value.ToString() +"'";
-                            SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
-                            sqlCommand.Parameters.AddWithValue("@refno", txtRefNo.Text);
-                            sqlCommand.Parameters.AddWithValue("@pcode", grvData.Rows[e.RowIndex].Cells[1].Value.ToString());
-                            sqlCommand.Parameters.AddWithValue("@sdate", dtpStockInDate.Value);
-                            sqlCommand.Parameters.AddWithValue("@stockinby", txtStockInBy.Text);
-                            sqlCommand.ExecuteNonQuery();
-                            sqlConnection.Close();
-                            MessageBox.Show("successfully added!", _msg, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            LoadStockIn();
-                        }
-                    }
-                }
 
             }
             catch (Exception ex)
@@ -129,9 +111,9 @@ namespace ANSCodeUI
                                     MessageBoxButtons.YesNo);
                     if (confirmResult == DialogResult.Yes)
                     {
-                        using (SqlConnection sqlConnection=new SqlConnection(DBConnection.MyConnection()))
+                        using (SqlConnection sqlConnection = new SqlConnection(DBConnection.MyConnection()))
                         {
-                            string query = @"delete from tblStockIn where id = '"+ grvDetail.Rows[e.RowIndex].Cells[1].Value.ToString() +"'";
+                            string query = @"delete from tblStockIn where id = '" + grvDetail.Rows[e.RowIndex].Cells[1].Value.ToString() + "'";
                             sqlConnection.Open();
                             SqlCommand sqlCommand = new SqlCommand(query, sqlConnection);
                             sqlCommand.ExecuteNonQuery();
@@ -146,6 +128,78 @@ namespace ANSCodeUI
             {
                 MessageBox.Show(ex.ToString(), _msg, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void clear()
+        {
+            try
+            {
+                txtRefNo.Text = string.Empty;
+                txtStockInBy.Text = string.Empty;
+                dtpStockInDate.Value = DateTime.Now;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), _msg, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSave_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (grvDetail.Rows.Count > 0)
+                {
+                    using (SqlConnection sqlConnection = new SqlConnection(DBConnection.MyConnection()))
+                    {
+                        for (int i = 0; i < grvDetail.Rows.Count; i++)
+                        {
+
+                            SqlCommand sqlCommand = new SqlCommand();
+
+                            //update tblProduct
+                            string queryProduct = "update tblProduct set qty = qty + " + int.Parse(grvDetail.Rows[i].Cells[5].Value.ToString()) + " where pcode like '" + grvDetail.Rows[i].Cells[3].Value.ToString() + "'";
+                            sqlConnection.Open();
+                            sqlCommand = new SqlCommand(queryProduct, sqlConnection);
+                            sqlCommand.ExecuteNonQuery();
+                            sqlConnection.Close();
+
+                            //update tblStock
+                            string queryStock = "update tblStockIn set qty = qty + " + int.Parse(grvDetail.Rows[i].Cells[5].Value.ToString()) + ", status = 'done' where id like '" + grvDetail.Rows[i].Cells[1].Value.ToString() + "' ";
+                            sqlConnection.Open();
+                            sqlCommand = new SqlCommand(queryStock, sqlConnection);
+                            sqlCommand.ExecuteNonQuery();
+                            sqlConnection.Close();
+                        }
+                    }
+                    clear();
+                    LoadStockIn();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), _msg, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void linkLabel1_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        {
+            try
+            {
+                frmSearchProductStockIn searchProductStockIn = new frmSearchProductStockIn(this);
+                searchProductStockIn.LoadProduct();
+                searchProductStockIn.ShowDialog();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString(), _msg, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void frmStockIn_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

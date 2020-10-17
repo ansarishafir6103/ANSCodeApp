@@ -32,3 +32,13 @@ E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.csproj.GenerateResource.ca
 E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.csproj.CoreCompileInputs.cache
 E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.exe
 E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.pdb
+E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.frmCategory.resources
+E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.frmCategoryList.resources
+E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.frmProduct.resources
+E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.frmProductList.resources
+E:\SmartCode\ANSCodeApp\ANSCodeUI\bin\Debug\MetroFramework.Design.dll
+E:\SmartCode\ANSCodeApp\ANSCodeUI\bin\Debug\MetroFramework.dll
+E:\SmartCode\ANSCodeApp\ANSCodeUI\bin\Debug\MetroFramework.Fonts.dll
+E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.csproj.CopyComplete
+E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.frmStockIn.resources
+E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.frmSearchProductStockIn.resources
