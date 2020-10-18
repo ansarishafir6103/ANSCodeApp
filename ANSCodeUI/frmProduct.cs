@@ -116,9 +116,17 @@ namespace ANSCodeUI
                     sqlCommand.Parameters.AddWithValue("@pcode", txtProductCode.Text);
                     sqlCommand.Parameters.AddWithValue("@barcode", txtBarcode.Text);
                     sqlCommand.Parameters.AddWithValue("@pdesc", txtDescription.Text);
-                    sqlCommand.Parameters.AddWithValue("@brandid", brandid);
-                    sqlCommand.Parameters.AddWithValue("@categoryid", categoryid);
-                    sqlCommand.Parameters.AddWithValue("@price", txtPrice.Text);
+
+                    if (string.IsNullOrEmpty(brandid)) brandid = "0";
+                    sqlCommand.Parameters.AddWithValue("@brandid",int.Parse(brandid));
+
+                    if (string.IsNullOrEmpty(categoryid)) categoryid = "0";
+                    sqlCommand.Parameters.AddWithValue("@categoryid", int.Parse(categoryid));
+
+                    if (string.IsNullOrEmpty(txtPrice.Text.Trim())) txtPrice.Text = "0";
+                    sqlCommand.Parameters.AddWithValue("@price", decimal.Parse(txtPrice.Text.Trim()));
+
+
                     sqlCommand.ExecuteNonQuery();
                     sqlConnection.Close();
                     #endregion
@@ -177,9 +185,16 @@ namespace ANSCodeUI
                     sqlCommand.Parameters.AddWithValue("@pcode", txtProductCode.Text);
                     sqlCommand.Parameters.AddWithValue("@barcode", txtBarcode.Text);
                     sqlCommand.Parameters.AddWithValue("@pdesc", txtDescription.Text);
-                    sqlCommand.Parameters.AddWithValue("@brandid", brandid);
-                    sqlCommand.Parameters.AddWithValue("@categoryid", categoryid);
-                    sqlCommand.Parameters.AddWithValue("@price", txtPrice.Text);
+
+                    if (string.IsNullOrEmpty(brandid)) brandid = "0";
+                    sqlCommand.Parameters.AddWithValue("@brandid", int.Parse(brandid));
+
+                    if (string.IsNullOrEmpty(categoryid)) categoryid = "0";
+                    sqlCommand.Parameters.AddWithValue("@categoryid", int.Parse(categoryid));
+
+                    if (string.IsNullOrEmpty(txtPrice.Text.Trim())) txtPrice.Text = "0";
+                    sqlCommand.Parameters.AddWithValue("@price", decimal.Parse(txtPrice.Text.Trim()));
+
                     sqlCommand.ExecuteNonQuery();
                     sqlConnection.Close();
                     #endregion
