@@ -42,3 +42,7 @@ E:\SmartCode\ANSCodeApp\ANSCodeUI\bin\Debug\MetroFramework.Fonts.dll
 E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.csproj.CopyComplete
 E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.frmStockIn.resources
 E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.frmSearchProductStockIn.resources
+E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.frmPOS.resources
+E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.frmQty.resources
+E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.frmLookUp.resources
+E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.frmDiscount.resources

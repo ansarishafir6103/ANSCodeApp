@@ -51,5 +51,11 @@ namespace ANSCodeUI
             //stockIn.LoadProduct();
             stockIn.Show();
         }
+
+        private void btnPOS_Click(object sender, EventArgs e)
+        {
+            frmPOS pOS = new frmPOS();
+            pOS.ShowDialog();
+        }
     }
 }

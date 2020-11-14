@@ -86,6 +86,24 @@
     <Compile Include="frmCategoryList.Designer.cs">
       <DependentUpon>frmCategoryList.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmDiscount.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmDiscount.Designer.cs">
+      <DependentUpon>frmDiscount.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmLookUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmLookUp.Designer.cs">
+      <DependentUpon>frmLookUp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmPOS.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmPOS.Designer.cs">
+      <DependentUpon>frmPOS.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmProduct.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +115,12 @@
     </Compile>
     <Compile Include="frmProductList.Designer.cs">
       <DependentUpon>frmProductList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="frmQty.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmQty.Designer.cs">
+      <DependentUpon>frmQty.cs</DependentUpon>
     </Compile>
     <Compile Include="frmSearchProductStockIn.cs">
       <SubType>Form</SubType>
@@ -127,11 +151,23 @@
     <EmbeddedResource Include="frmCategoryList.resx">
       <DependentUpon>frmCategoryList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="frmDiscount.resx">
+      <DependentUpon>frmDiscount.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmLookUp.resx">
+      <DependentUpon>frmLookUp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmPOS.resx">
+      <DependentUpon>frmPOS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="frmProduct.resx">
       <DependentUpon>frmProduct.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmProductList.resx">
       <DependentUpon>frmProductList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmQty.resx">
+      <DependentUpon>frmQty.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmSearchProductStockIn.resx">
       <DependentUpon>frmSearchProductStockIn.cs</DependentUpon>

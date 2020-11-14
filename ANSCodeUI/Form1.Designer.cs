@@ -30,6 +30,7 @@
         {
             this.panelHeader = new System.Windows.Forms.Panel();
             this.panelLeft = new System.Windows.Forms.Panel();
+            this.btnStockIn = new System.Windows.Forms.Button();
             this.btnSignOut = new System.Windows.Forms.Button();
             this.btnUserSettings = new System.Windows.Forms.Button();
             this.btnsystemSettings = new System.Windows.Forms.Button();
@@ -37,12 +38,11 @@
             this.btnManageBrand = new System.Windows.Forms.Button();
             this.btnManageCategory = new System.Windows.Forms.Button();
             this.btnManageProduct = new System.Windows.Forms.Button();
-            this.btnManageSales = new System.Windows.Forms.Button();
+            this.btnPOS = new System.Windows.Forms.Button();
             this.btnDashboard = new System.Windows.Forms.Button();
             this.userNameLable = new System.Windows.Forms.Label();
             this.pbUserName = new System.Windows.Forms.PictureBox();
             this.panelContainer = new System.Windows.Forms.Panel();
-            this.btnStockIn = new System.Windows.Forms.Button();
             this.panelLeft.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbUserName)).BeginInit();
             this.SuspendLayout();
@@ -67,7 +67,7 @@
             this.panelLeft.Controls.Add(this.btnManageBrand);
             this.panelLeft.Controls.Add(this.btnManageCategory);
             this.panelLeft.Controls.Add(this.btnManageProduct);
-            this.panelLeft.Controls.Add(this.btnManageSales);
+            this.panelLeft.Controls.Add(this.btnPOS);
             this.panelLeft.Controls.Add(this.btnDashboard);
             this.panelLeft.Controls.Add(this.userNameLable);
             this.panelLeft.Controls.Add(this.pbUserName);
@@ -76,6 +76,23 @@
             this.panelLeft.Name = "panelLeft";
             this.panelLeft.Size = new System.Drawing.Size(250, 561);
             this.panelLeft.TabIndex = 1;
+            // 
+            // btnStockIn
+            // 
+            this.btnStockIn.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnStockIn.FlatAppearance.BorderSize = 0;
+            this.btnStockIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnStockIn.ForeColor = System.Drawing.Color.White;
+            this.btnStockIn.Image = global::ANSCodeUI.Properties.Resources.Product;
+            this.btnStockIn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnStockIn.Location = new System.Drawing.Point(13, 265);
+            this.btnStockIn.Name = "btnStockIn";
+            this.btnStockIn.Size = new System.Drawing.Size(222, 30);
+            this.btnStockIn.TabIndex = 12;
+            this.btnStockIn.Text = "Stock In";
+            this.btnStockIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnStockIn.UseVisualStyleBackColor = true;
+            this.btnStockIn.Click += new System.EventHandler(this.btnStockIn_Click);
             // 
             // btnSignOut
             // 
@@ -193,21 +210,22 @@
             this.btnManageProduct.UseVisualStyleBackColor = true;
             this.btnManageProduct.Click += new System.EventHandler(this.btnManageProduct_Click);
             // 
-            // btnManageSales
+            // btnPOS
             // 
-            this.btnManageSales.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnManageSales.FlatAppearance.BorderSize = 0;
-            this.btnManageSales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnManageSales.ForeColor = System.Drawing.Color.White;
-            this.btnManageSales.Image = global::ANSCodeUI.Properties.Resources.Sales;
-            this.btnManageSales.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnManageSales.Location = new System.Drawing.Point(13, 188);
-            this.btnManageSales.Name = "btnManageSales";
-            this.btnManageSales.Size = new System.Drawing.Size(222, 30);
-            this.btnManageSales.TabIndex = 4;
-            this.btnManageSales.Text = "Manage Sales";
-            this.btnManageSales.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnManageSales.UseVisualStyleBackColor = true;
+            this.btnPOS.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPOS.FlatAppearance.BorderSize = 0;
+            this.btnPOS.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnPOS.ForeColor = System.Drawing.Color.White;
+            this.btnPOS.Image = global::ANSCodeUI.Properties.Resources.Sales;
+            this.btnPOS.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPOS.Location = new System.Drawing.Point(13, 188);
+            this.btnPOS.Name = "btnPOS";
+            this.btnPOS.Size = new System.Drawing.Size(222, 30);
+            this.btnPOS.TabIndex = 4;
+            this.btnPOS.Text = " POS";
+            this.btnPOS.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btnPOS.UseVisualStyleBackColor = true;
+            this.btnPOS.Click += new System.EventHandler(this.btnPOS_Click);
             // 
             // btnDashboard
             // 
@@ -257,23 +275,6 @@
             this.panelContainer.Size = new System.Drawing.Size(948, 561);
             this.panelContainer.TabIndex = 2;
             // 
-            // btnStockIn
-            // 
-            this.btnStockIn.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnStockIn.FlatAppearance.BorderSize = 0;
-            this.btnStockIn.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnStockIn.ForeColor = System.Drawing.Color.White;
-            this.btnStockIn.Image = global::ANSCodeUI.Properties.Resources.Product;
-            this.btnStockIn.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnStockIn.Location = new System.Drawing.Point(13, 265);
-            this.btnStockIn.Name = "btnStockIn";
-            this.btnStockIn.Size = new System.Drawing.Size(222, 30);
-            this.btnStockIn.TabIndex = 12;
-            this.btnStockIn.Text = "Stock In";
-            this.btnStockIn.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btnStockIn.UseVisualStyleBackColor = true;
-            this.btnStockIn.Click += new System.EventHandler(this.btnStockIn_Click);
-            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 17F);
@@ -288,7 +289,6 @@
             this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "Form1";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.panelLeft.ResumeLayout(false);
             this.panelLeft.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pbUserName)).EndInit();
@@ -305,7 +305,7 @@
         private System.Windows.Forms.Button btnDashboard;
         private System.Windows.Forms.Button btnManageCategory;
         private System.Windows.Forms.Button btnManageProduct;
-        private System.Windows.Forms.Button btnManageSales;
+        private System.Windows.Forms.Button btnPOS;
         private System.Windows.Forms.Button btnRecords;
         private System.Windows.Forms.Button btnManageBrand;
         private System.Windows.Forms.Button btnUserSettings;
