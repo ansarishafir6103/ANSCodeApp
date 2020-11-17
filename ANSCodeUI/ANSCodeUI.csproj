@@ -128,6 +128,12 @@
     <Compile Include="frmSearchProductStockIn.Designer.cs">
       <DependentUpon>frmSearchProductStockIn.cs</DependentUpon>
     </Compile>
+    <Compile Include="frmSettle.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="frmSettle.Designer.cs">
+      <DependentUpon>frmSettle.cs</DependentUpon>
+    </Compile>
     <Compile Include="frmStockIn.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -171,6 +177,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="frmSearchProductStockIn.resx">
       <DependentUpon>frmSearchProductStockIn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="frmSettle.resx">
+      <DependentUpon>frmSettle.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="frmStockIn.resx">
       <DependentUpon>frmStockIn.cs</DependentUpon>

@@ -126,6 +126,7 @@ namespace ANSCodeUI
         {
             try
             {
+                Boolean hasrecord = false;
                 grvData.Rows.Clear();
                 using (SqlConnection sqlConnection=new SqlConnection(DBConnection.MyConnection()))
                 {
@@ -150,8 +151,9 @@ namespace ANSCodeUI
                                 sqlDataReader["price"].ToString(),
                                 sqlDataReader["qty"].ToString(),
                                 sqlDataReader["disc"].ToString(),
-                                Double.Parse(sqlDataReader["total"].ToString()).ToString("#,##0.00")
+                                Double.Parse(sqlDataReader["total"].ToString()).ToString("#,##0.00") 
                                 );
+                            hasrecord = true;
                         }
                     }
                     sqlDataReader.Close();
@@ -159,6 +161,16 @@ namespace ANSCodeUI
                     lblSalesTotal.Text =total.ToString("#,##0.00");
                     lblDiscount.Text = discount.ToString("#,##0.00");
                     GetCartTotal();
+                    if (hasrecord)
+                    {
+                        btnSettelPayment.Enabled = true;
+                        btnAddDiscount.Enabled = true;
+                    }
+                    else
+                    {
+                        btnSettelPayment.Enabled = false;
+                        btnAddDiscount.Enabled = false;
+                    }
                 }
             }
             catch (Exception ex)
@@ -236,6 +248,20 @@ namespace ANSCodeUI
                 int i = grvData.CurrentRow.Index;
                 Id = grvData[1, i].Value.ToString();
                 Price = grvData[3, i].Value.ToString();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, message, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btnSettelPayment_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                frmSettle objSettel = new frmSettle();
+                objSettel.txtSale.Text = lblDisplayTotal.Text;
+                objSettel.ShowDialog();
             }
             catch (Exception ex)
             {

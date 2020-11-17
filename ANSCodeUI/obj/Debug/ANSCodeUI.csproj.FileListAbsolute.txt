@@ -46,3 +46,4 @@ E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.frmPOS.resources
 E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.frmQty.resources
 E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.frmLookUp.resources
 E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.frmDiscount.resources
+E:\SmartCode\ANSCodeApp\ANSCodeUI\obj\Debug\ANSCodeUI.frmSettle.resources
